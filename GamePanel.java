@@ -27,13 +27,27 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     private Timer timer;
     private Random random;
 
+    private JButton tryAgainButton;
+
     public GamePanel() {
         random = new Random();
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setBackground(Color.BLACK);
         this.setFocusable(true);
+        this.setLayout(null); // Allow manual placement of components
         this.addKeyListener(this);
+
+        setupTryAgainButton();
         startGame();
+    }
+
+    private void setupTryAgainButton() {
+        tryAgainButton = new JButton("Try Again");
+        tryAgainButton.setBounds((SCREEN_WIDTH / 2) - 75, SCREEN_HEIGHT / 2 + 50, 150, 40);
+        tryAgainButton.setFocusable(false);
+        tryAgainButton.setVisible(false); // Initially hidden
+        tryAgainButton.addActionListener(e -> startGame());
+        this.add(tryAgainButton);
     }
 
     private void startGame() {
@@ -42,13 +56,19 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
         direction = 'R';
         running = true;
         gameOver = false;
+
+        // Reset snake position
         for (int i = 0; i < bodyParts; i++) {
             x[i] = 0;
             y[i] = 0;
         }
+
         newApple();
         timer = new Timer(DELAY, this);
         timer.start();
+
+        tryAgainButton.setVisible(false); // Hide the button
+        repaint();
     }
 
     @Override
@@ -151,11 +171,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
         metrics = getFontMetrics(g.getFont());
         g.drawString("Game Over", (SCREEN_WIDTH - metrics.stringWidth("Game Over")) / 2, SCREEN_HEIGHT / 3);
 
-        // Try Again text
-        g.setColor(Color.YELLOW);
-        g.setFont(new Font("Ink Free", Font.BOLD, 30));
-        metrics = getFontMetrics(g.getFont());
-        g.drawString("Press 'R' to Try Again", (SCREEN_WIDTH - metrics.stringWidth("Press 'R' to Try Again")) / 2, SCREEN_HEIGHT / 2);
+        // Show "Try Again" button
+        tryAgainButton.setVisible(true);
     }
 
     @Override
@@ -182,11 +199,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
                 break;
             case KeyEvent.VK_DOWN:
                 if (direction != 'U') direction = 'D';
-                break;
-            case KeyEvent.VK_R:
-                if (gameOver) {
-                    startGame();
-                }
                 break;
         }
     }
