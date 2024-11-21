@@ -6,8 +6,7 @@ A simple and fun **Snake Game** implemented in Java using **Swing** for the grap
 ---
 
 ## 📋 Features
-- **Player Name Input**: Enter your name before starting the game.
-- **Score Display**: Your score is shown in real time as you play.
+- **Score Display**: Your score is shown in real-time as you play.
 - **Game Over Screen**: Displays the final score and a "Try Again" button.
 - **Responsive Controls**: Use arrow keys to navigate the snake.
 
@@ -62,21 +61,6 @@ A simple and fun **Snake Game** implemented in Java using **Swing** for the grap
 ├── README.md            # Project documentation.
 ```
 
----
-
-## 🖼️ Screenshots
-### 1. Player Name Input:
-A dialog box prompts the player to enter their name before starting the game.
-
-### 2. Game in Progress:
-- Real-time score displayed.
-- Player name displayed at the top left.
-
-### 3. Game Over Screen:
-- Final score displayed.
-- "Try Again" button allows you to restart.
-
----
 
 ## 🏗️ Future Enhancements
 - Add difficulty levels.
@@ -87,11 +71,6 @@ A dialog box prompts the player to enter their name before starting the game.
 
 ## 🤝 Contributing
 Contributions are welcome! Feel free to fork the repository, make changes, and submit a pull request.
-
----
-
-## 📜 License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
